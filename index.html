@@ -29,8 +29,27 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>kalakariya</title>
+  <title>Kalakariya</title>
   <link rel="manifest" href="manifest.json">
+
+  <!-- Add Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyBQMqoRD0GKPx9luxQkK97367DUl_oUYTQ",
+      authDomain: "kalakariya1810.firebaseapp.com",
+      projectId: "kalakariya1810",
+      storageBucket: "kalakariya1810.appspot.com",
+      messagingSenderId: "422374668699",
+      appId: "1:422374668699:web:0deee84e27cc27d174c93e"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
