@@ -1,19 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="/kalakariya/">
 
   <meta charset="UTF-8">
@@ -32,26 +19,106 @@
   <title>Kalakariya</title>
   <link rel="manifest" href="manifest.json">
 
-  <!-- Add Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+  <!-- Styles for the pre-loader animation -->
+  <style>
+    /* Pre-loader container */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column; /* Align items vertically */
+      justify-content: center;  /* Center vertically */
+      align-items: center;      /* Center horizontally */
+      background-image: url('assets/images/banner.webp'); /* Update with your image name */
+      background-size: cover; /* Cover the whole area */
+      //filter: blur(8px); /* Apply blur effect */
+    }
 
-  <script>
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-      apiKey: "AIzaSyBQMqoRD0GKPx9luxQkK97367DUl_oUYTQ",
-      authDomain: "kalakariya1810.firebaseapp.com",
-      projectId: "kalakariya1810",
-      storageBucket: "kalakariya1810.appspot.com",
-      messagingSenderId: "422374668699",
-      appId: "1:422374668699:web:0deee84e27cc27d174c93e"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-  </script>
+    /* Overlay for the blur effect */
+    #overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(4, 9, 30, 0.7); /* Semi-transparent black overlay */
+    }
+
+    /* Loader animation */
+    .loader {
+      border: 8px solid #f3f3f3; /* Light grey border */
+      border-radius: 50%; /* Circle shape */
+      border-top: 8px solid #C6B069; /* Blue color for top border */
+      width: 70px; /* Size of loader */
+      height: 70px;
+      animation: spin 0.8s linear infinite; /* Loader spin animation */
+      position: relative; /* Position loader relative to preloader */
+      z-index: 10000; /* Ensure loader appears above the overlay */
+    }
+
+    /* Spin animation */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Simple text style */
+    .text {
+      font-size: 36px; /* Increase font size of the text */
+      color: white; /* White color for the text */
+      margin-top: 20px; /* Space between loader and text */
+      text-align: center; /* Center the text */
+      opacity: 0; /* Initial opacity for fade-in */
+      animation: fadeIn 1s forwards; /* Fade in followed by fade out */
+    }
+
+    /* Fade in animation */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Fade out animation */
+<!--    @keyframes fadeOut {-->
+<!--      0% { opacity: 1; }-->
+<!--      100% { opacity: 0; }-->
+<!--    }-->
+
+    /* Preventing any unwanted scroll */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif; /* Default font */
+    }
+  </style>
 
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+
+<!-- Pre-loader HTML -->
+<div id="preloader">
+  <div id="overlay"></div> <!-- Overlay for blur effect -->
+  <div class="loader"></div>
+  <div class="text">Kalakariya</div> <!-- Simple text -->
+</div>
+
+<script src="flutter_bootstrap.js" async></script>
+
+<!-- Remove the pre-loader when Flutter is ready -->
+<script>
+  window.addEventListener('flutter-first-frame', function() {
+    var preloader = document.getElementById('preloader');
+    if (preloader) {
+      preloader.style.display = 'none';
+    }
+  });
+</script>
+
 </body>
 </html>
